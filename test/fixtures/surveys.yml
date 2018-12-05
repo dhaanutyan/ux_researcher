@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  result: 
+  user: one
+  template: one
+
+two:
+  token: MyString
+  result: 
+  user: two
+  template: two
