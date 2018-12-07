@@ -13,4 +13,15 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery3
 //= require_tree .
+
+$(document).ready(function(){
+
+  $("#add-step").click(function(){
+    var lastStep = $(".steps-form form .step").last();
+    var stepNumber = parseInt(lastStep.data("step-number")) + 1;
+
+    lastStep.after('<div class="step" data-step-number=' + stepNumber + '>' + stepNumber + '</div>');
+  });
+});
