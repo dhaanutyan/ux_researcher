@@ -1,14 +1,14 @@
 <h1>Performing survey for user</h1>
 <div class="available-steps">
 <% @survey.template.data['available_steps'].each do |step| %>
-  <div class="step" style="background-color:<%= step['color'] %>"><%= step['name'] %></div>
+  <div class="step drag-drop" style="background-color:<%= step['color'] %>"><%= step['name'] %></div>
 <% end %>
 </div>
 
 <div class="steps-form">
 <%= form_with url: surveys_save_result_path, local: true do |f| %>
   <% (0..@survey.template.data['steps_number']).each do |step| %>
-    <div class="step" data-step-number="<%= step %>"><%= step %></div>
+    <div class="step drop-zone" data-step-number="<%= step %>"><%= step %></div>
   <% end %>
   <input type="button" id="add-step" value="+"><br><br>
   <%= f.hidden_field :survey_result %>
