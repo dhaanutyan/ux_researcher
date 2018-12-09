@@ -23,7 +23,11 @@ $(document).ready(function(){
     var lastStep = $(".steps-form form .step").last();
     var stepNumber = parseInt(lastStep.data("step-number")) + 1;
 
-    lastStep.after('<div class="step" data-step-number=' + stepNumber + '>' + stepNumber + '</div>');
+    lastStep.after('<div class="step drop-zone" data-step-number=' + stepNumber + '>' + stepNumber + '</div>');
+  });
+
+  $("#remove-step").click(function(){
+    $(".steps-form form .step").last().remove();
   });
 
   interact(".drag-drop").draggable({
@@ -60,6 +64,35 @@ $(document).ready(function(){
       relatedTarget.css("transform", "translate(" + x + "px," + y + "px)");
       relatedTarget.data("x", x);
       relatedTarget.data("y", y);
+      target.data("step-name", relatedTarget.text());
+    }
+  });
+
+  $("form").submit(function(e){
+    e.preventDefault();
+    var steps = [];
+    var emptySteps = false;
+    $(".steps-form .step").each(function() {
+      var name = $(this).data("step-name");
+      if(typeof name === "undefined" || name === "")
+      {
+        emptySteps = true;
+        return false;
+      }
+      else
+      {
+        steps.push($(this).data("step-name"));
+      }
+    });
+
+    if(emptySteps)
+    {
+      $(".error").show();
+    }
+    else
+    {
+      $("form #result").val(JSON.stringify(steps));
+      $(this).off("submit").submit();
     }
   });
 });
