@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Admin.create!({email: 'admin@example.com', password: 'test12345'})
 u = User.create!({name: 'Test', description: 'Example user', email: 'test@example.com' })
 
 t = SurveyTemplate.new({name: 'Survey_1', description: 'First survey'})
