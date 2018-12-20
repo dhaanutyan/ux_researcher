@@ -27,7 +27,24 @@ $(document).ready(function(){
   });
 
   $("#remove-step").click(function(){
-    $(".steps-form form .step").last().remove();
+    var lastStep = $(".steps-form form .step").last();
+    var stepName = lastStep.data("step-name");
+
+    if (typeof stepName !== "undefined" && stepName !== "")
+    {
+      $(".available-steps .step").each(function() {
+        var step = $(this);
+        if(step.text() === stepName)
+        {
+          step.css("transform", "translate(0, 0)");
+          step.data("x", 0);
+          step.data("y", 0);
+          return false;
+        }
+      });
+    }
+
+    lastStep.remove();
   });
 
   interact(".drag-drop").draggable({
