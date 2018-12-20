@@ -1,15 +1,15 @@
 class SurveysController < ApplicationController
   def perform
-    if session[:current_session_id]
-      @survey = Survey.find(current_session_id)
+    if session[:current_survey_id]
+      @survey = Survey.find(session[:current_survey_id])
     else
-      @survey = Survey.first#find_by(token: params[:token])
-      session[:current_session_id] = @survey.id
+      @survey = Survey.find_by(token: params[:token])
+      session[:current_survey_id] = @survey.id
     end
   end
 
   def save_result
-    @survey = Survey.find(session[:current_session_id])
+    @survey = Survey.find(session[:current_survey_id])
     result = Hash.new
 
     JSON.parse(params[:result]).each.with_index(1) do |step, index|
