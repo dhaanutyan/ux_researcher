@@ -11,8 +11,8 @@
   <% (1..@survey.template.data['steps_number']).each do |step| %>
     <div class="step drop-zone" data-step-number="<%= step %>"><%= step %></div>
   <% end %>
-  <input type="button" id="add-step" value="+" style="display:none">
-  <input type="button" id="remove-step" value="-" style="display:none">
+  <input type="button" id="add-step" value="+">
+  <input type="button" id="remove-step" value="-">
   <br><br>
   <%= f.hidden_field :result %>
   <%= f.submit 'Save', data: {disable_with: false} %>
